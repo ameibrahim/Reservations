@@ -94,7 +94,7 @@ Install dependencies using Composer:
 ```composer install```
 
     Set up your database:
-        Create the databases form_db and students_database.
+        Create the databases form_db and aiiovdft_reservations_students.
         Import the SQL files provided to set up the necessary tables.
 
     Configure your server:

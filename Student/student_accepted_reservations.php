@@ -10,8 +10,8 @@ if (!isset($_SESSION['student_id'])) {
 $student_id = $_SESSION['student_id'];
 
 // Accepted rezervasyonlarını al
-$query = "SELECT ar.*, a.firstname, a.lastname, a.title, a.profile_picture FROM form_db.accepted_reservations ar 
-          JOIN form_db.academics a ON ar.academic_id = a.id 
+$query = "SELECT ar.*, a.firstname, a.lastname, a.title, a.profile_picture FROM accepted_reservations ar 
+          JOIN academics a ON ar.academic_id = a.id 
           WHERE ar.student_id = '$student_id'";
 $result = $connection->query($query);
 

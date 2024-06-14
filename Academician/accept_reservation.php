@@ -24,17 +24,17 @@ if (isset($_GET['id'])) {
     }
 
     // Rezervasyonu kabul et ve accepted_reservations tablosuna taşı
-    $query = "INSERT INTO form_db.accepted_reservations (academic_id, academic_name, student_id, student_name, student_number, reservation_day, reservation_time, reservation_reason, reservation_details)
+    $query = "INSERT INTO accepted_reservations (academic_id, academic_name, student_id, student_name, student_number, reservation_day, reservation_time, reservation_reason, reservation_details)
               SELECT academic_id, '$academic_name', student_id, student_name, student_number, reservation_day, reservation_time, reservation_reason, reservation_details
-              FROM form_db.pending_reservations WHERE id = '$reservation_id'";
+              FROM pending_reservations WHERE id = '$reservation_id'";
 
     if ($connection_academics->query($query) === TRUE) {
         // Pending rezervasyonunu sil
-        $delete_query = "DELETE FROM form_db.pending_reservations WHERE id = '$reservation_id'";
+        $delete_query = "DELETE FROM pending_reservations WHERE id = '$reservation_id'";
         $connection_academics->query($delete_query);
 
         // Öğrenciye e-posta bildirimi gönder
-        $query_student = "SELECT email FROM students WHERE id = (SELECT student_id FROM form_db.accepted_reservations WHERE id = (SELECT MAX(id) FROM form_db.accepted_reservations))";
+        $query_student = "SELECT email FROM students WHERE id = (SELECT student_id FROM accepted_reservations WHERE id = (SELECT MAX(id) FROM accepted_reservations))";
         $result_student = $connection_students->query($query_student);
         if ($result_student->num_rows > 0) {
             $student = $result_student->fetch_assoc();

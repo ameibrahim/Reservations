@@ -10,8 +10,8 @@ if (!isset($_SESSION['academic_id'])) {
 $academic_id = $_SESSION['academic_id'];
 
 // Pending rezervasyonlarını al
-$query = "SELECT pr.*, s.full_name, s.student_number, s.profile_picture FROM form_db.pending_reservations pr 
-          JOIN students_database.students s ON pr.student_id = s.id 
+$query = "SELECT pr.*, s.full_name, s.student_number, s.profile_picture FROM pending_reservations pr 
+          JOIN aiiovdft_reservations_students.students s ON pr.student_id = s.id 
           WHERE pr.academic_id = '$academic_id'";
 $result = $connection_academics->query($query);
 
@@ -30,7 +30,7 @@ $times_of_day = [
     "13:00 - 13:50", "14:00 - 14:50", "15:00 - 15:50", "16:00 - 16:50", 
     "17:00 - 17:50", "18:00 - 18:50", "19:00 - 19:50"
 ];
-$query_pending_count = "SELECT COUNT(*) as count FROM form_db.pending_reservations WHERE academic_id = '$academic_id'";
+$query_pending_count = "SELECT COUNT(*) as count FROM pending_reservations WHERE academic_id = '$academic_id'";
 $result_pending_count = $connection_academics->query($query_pending_count);
 $row_pending_count = $result_pending_count->fetch_assoc();
 $pending_count = $row_pending_count['count'];

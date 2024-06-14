@@ -12,10 +12,10 @@ if (isset($_GET['id'])) {
     $reservation_id = $_GET['id'];
 
     // Accepted reservation'ı sil
-    $query = "DELETE FROM form_db.accepted_reservations WHERE id = '$reservation_id'";
+    $query = "DELETE FROM accepted_reservations WHERE id = '$reservation_id'";
     if ($connection_academics->query($query) === TRUE) {
         // Öğrenci veritabanındaki ilgili rezervasyonu da sil
-        $query_student = "DELETE FROM students_database.accepted_reservations WHERE id = '$reservation_id'";
+        $query_student = "DELETE FROM aiiovdft_reservations_students.accepted_reservations WHERE id = '$reservation_id'";
         if ($connection_students->query($query_student) === TRUE) {
             header("Location: accepted_reservations.php");
         } else {

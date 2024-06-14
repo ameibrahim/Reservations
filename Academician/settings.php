@@ -76,7 +76,7 @@ if (isset($_POST['contact_submit'])) {
         $error = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 }
-$query_pending_count = "SELECT COUNT(*) as count FROM form_db.pending_reservations WHERE academic_id = '$academic_id'";
+$query_pending_count = "SELECT COUNT(*) as count FROM pending_reservations WHERE academic_id = '$academic_id'";
 $result_pending_count = $connection_academics->query($query_pending_count);
 $row_pending_count = $result_pending_count->fetch_assoc();
 $pending_count = $row_pending_count['count'];
