@@ -2,13 +2,12 @@
 
 // Veritabanı bağlantı bilgileri
 $servername = 'localhost';
-$username = 'root';
-$password = '';
-$dbname = "form_db";
-$port = 3307;
+$username = 'aiiovdft_neudc';
+$password = 'aiiovdft_neudc';
+$dbname = "aiiovdft_reservations_students";
 
 // Veritabanı bağlantısı
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Bağlantı kontrolü
 if ($conn->connect_error) {
